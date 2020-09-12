@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>设置行政区</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      #ctiyDetails {
+        width: 230px;
+        height: auto;
+        background-color: beige;
+        box-shadow: 0 0 5px black;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 99;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      #ctiyDetails > div > span {
+        font-size: 12px;
+      }
+    </style>
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=248ef5458f973ecdf17bf3ccf8993c53"></script>
+  </head>
+
+  <body>
+    <div id="container"></div>
+    <div id="ctiyDetails">
+      <div><span id="nEast"></span></div>
+      <div><span id="sWest"></span></div>
+      <div><input type="text" id="sNr" title="设置右上角x轴坐标" /></div>
+      <div><input type="text" id="sSq" title="设置左下角y轴坐标" /></div>
+      <div>
+        <button id="conf">确认</button>
+        <button id="unfreeze">解除限制</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    var map = new AMap.Map("container", {
+      zoom: 11, //初始化地图级别 级别越大 位置越精
+      center: [116.379391, 39.861536], //初始化地图中心点
+    });
+
+    // 设置限制
+    var flag = false;
+    var argN,argS;
+
+    conf.onclick = function () {
+      if (flag === true) {
+        map.panTo([116.379391, 39.861536]);
+      }
+
+      var bounds = map.getBounds();
+      Number(sNr.value) > 0
+        ? (bounds.northeast.R = Number(sNr.value),argN = Number(sNr.value))
+        : (bounds.northeast.R = bounds.northeast.R);
+      Number(sSq.value) > 0
+        ? (bounds.southwest.Q = Number(sSq.value),argS = Number(sSq.value))
+        : (bounds.southwest.Q = bounds.southwest.Q);
+        map.setLimitBounds(bounds);
+
+        
+
+        console.log(bounds.northeast.R);
+      flag = false;
+    };
+
+    unfreeze.onclick = function () {
+      map.clearLimitBounds();
+      flag = true;
+    };
+
+    nEast.innerHTML = "右上角坐标:" + map.getBounds().northeast.toString();
+    sWest.innerHTML = "左下角坐标:" + map.getBounds().southwest.toString();
+
+    map.on("moveend", function () {
+      // if(argN != ''){
+      //   nEast.innerHTML = "右上角坐标:" + argN.toString()+','+String(map.getBounds().northeast.Q);
+      //   flag = false;
+      // } 
+      
+      // if(argS != '') {
+      //   sWest.innerHTML = "左下角坐标:" + argS.toString()+','+String(map.getBounds().southwest.R);
+      //   flag = false;
+      // } 
+
+      // if(!flag){
+        nEast.innerHTML = "右上角坐标:" + map.getBounds().northeast.toString();
+        sWest.innerHTML = "左下角坐标:" + map.getBounds().southwest.toString();
+      //   flag = true;
+      // }
+
+    });
+  </script>
+</html>

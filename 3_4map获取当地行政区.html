@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>获取当地行政区</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      #ctiyDetails {
+        width: 230px;
+        height: 80px;
+        background-color: beige;
+        box-shadow: 0 0 5px black;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 99;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=248ef5458f973ecdf17bf3ccf8993c53"></script>
+  </head>
+
+  <body>
+    <div id="container"></div>
+    <div id="ctiyDetails">
+      <!-- <input type="text" name="" id="cVal" />
+      <input type="text" name="" id="cVal2" />
+      <input type="text" name="" id="zVal" />
+      <button id="cBtn">确定</button> -->
+    </div>
+  </body>
+  <script>
+    var map = new AMap.Map("container", {
+      zoom: 11, //初始化地图级别 级别越大 位置越精
+      center: [116.379391, 39.861536], //初始化地图中心点
+    });
+
+    map.getCity(function (info) {
+      //   console.log(info);
+      ctiyDetails.innerHTML =
+        info.district + "," + info.city + "," + info.province;
+    });
+
+    map.on("moveend", function () {
+      map.getCity(function (info) {
+        // console.log(info);
+        ctiyDetails.innerHTML =
+          info.district + "," + info.city + "," + info.province;
+      });
+    });
+  </script>
+</html>
