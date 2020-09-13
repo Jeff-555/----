@@ -1,0 +1,44 @@
+{
+    "editor.fontSize": 22,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "update.mode": "none",
+    "search.followSymlinks": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    //beautify.config选择自定义设置文件的路径 
+    // "beautify.config": "D:\\my.jsbeautifyrc",
+    "beautify.language": {
+        "html": [
+            "htm",
+            "html",
+            "vue"
+        ],
+        "js": {
+            "type": [
+                "javascript",
+                "json"
+            ],
+            "filename": [
+                ".jshintrc",
+                ".jsbeautify"
+            ]
+        },
+        "css": [
+            "css",
+            "scss",
+            "less"
+        ]
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    }
+}
