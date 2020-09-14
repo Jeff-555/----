@@ -4,14 +4,15 @@
     "editor.detectIndentation": false,
     "update.mode": "none",
     "search.followSymlinks": false,
+    
     "[javascript]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[html]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },
     "[css]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "javascript.updateImportsOnFileMove.enabled": "always",
     //beautify.config选择自定义设置文件的路径 
@@ -40,5 +41,9 @@
     },
     "[vue]": {
         "editor.defaultFormatter": "HookyQR.beautify"
-    }
+    },
+
+    // prettier自定义设置
+    "prettier.useTabs": true,
+    // "prettier.insertPragma": true
 }
