@@ -1,59 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <title>设置行政区</title>
     <style type="text/css">
-      * {
-        margin: 0;
-        padding: 0;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-      #container {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
+        #container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
 
-      #ctiyDetails {
-        width: 230px;
-        height: auto;
-        background-color: beige;
-        box-shadow: 0 0 5px black;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        z-index: 99;
-        padding: 0;
-        overflow: hidden;
-      }
+        #ctiyDetails {
+            width: 230px;
+            height: auto;
+            background-color: beige;
+            box-shadow: 0 0 5px black;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 99;
+            padding: 0;
+            overflow: hidden;
+        }
 
-      #ctiyDetails > div > span {
-        font-size: 12px;
-      }
+        #ctiyDetails>div>span {
+            font-size: 12px;
+        }
     </style>
     <script src="https://webapi.amap.com/maps?v=1.4.15&key=248ef5458f973ecdf17bf3ccf8993c53"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="container"></div>
     <div id="ctiyDetails">
-      <div><span id="nEast"></span></div>
-      <div><span id="sWest"></span></div>
-      <div><input type="text" id="xNode" /></div>
-      <div><input type="text" id="yNode" /></div>
-      <div>
-        <button id="conf">解除间隔</button>
-        <button id="pBtn">更换</button>
-      </div>
+        <div><span id="nEast"></span></div>
+        <div><span id="sWest"></span></div>
+        <div><input type="text" id="xNode" /></div>
+        <div><input type="text" id="yNode" /></div>
+        <div>
+            <button id="conf">解除间隔</button>
+            <button id="pBtn">更换</button>
+        </div>
     </div>
-  </body>
-  <script>
+</body>
+<script>
     var map = new AMap.Map("container", {
-      zoom: 11, //初始化地图级别 级别越大 位置越精
-      center: [116.379391, 39.861536], //初始化地图中心点
+        zoom: 11, //初始化地图级别 级别越大 位置越精
+        center: [116.379391, 39.861536], //初始化地图中心点
     });
 
     var count = 0;
@@ -68,19 +69,20 @@
     // };
 
     pBtn.onclick = function () {
-      xNode.value != ""
-        ? yNode.value != ""
-          ? map.panTo([xNode.value, yNode.value])
-          : window.alert("请输入纵坐标")
-        : window.alert("请输入横坐标");
+        xNode.value != "" ?
+            yNode.value != "" ?
+            map.panTo([xNode.value, yNode.value]) :
+            window.alert("请输入纵坐标") :
+            window.alert("请输入横坐标");
     };
 
     nEast.innerHTML = "横坐标:" + map.getBounds().northeast.toString();
     sWest.innerHTML = "纵坐标:" + map.getBounds().southwest.toString();
 
     map.on("moveend", function () {
-      nEast.innerHTML = "横坐标:" + map.getBounds().northeast.toString();
-      sWest.innerHTML = "纵坐标:" + map.getBounds().southwest.toString();
+        nEast.innerHTML = "横坐标:" + map.getBounds().northeast.toString();
+        sWest.innerHTML = "纵坐标:" + map.getBounds().southwest.toString();
     });
-  </script>
+</script>
+
 </html>
